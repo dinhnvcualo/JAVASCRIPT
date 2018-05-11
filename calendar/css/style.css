@@ -74,3 +74,9 @@ table td{
 	text-align: center;
 	height: 30px;
 }
+.tr_clear{
+	cursor: pointer;
+}
+.td_none{
+	color: #2c2c2c;
+}

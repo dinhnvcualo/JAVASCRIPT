@@ -145,18 +145,13 @@ function getdatadisplay(year,month,day){
 function remoolddata(){
 	var tr_arr=document.getElementsByClassName("tr_clear");
 	var table=document.getElementById("table1");
-	//tr_arr=table.getElementsByTagName("tr");
-	//alert(tr_arr.length);
 	
 	for (var i = 0; i < tr_arr.length; i++) {
-		tr_arr[i].parentNode.removeChild(tr_arr[i]);
+		while (tr_arr[i].firstChild) {
+		    tr_arr[i].removeChild(tr_arr[i].firstChild);
+		}
 	}
-	for (var i = 0; i < tr_arr.length; i++) {
-		tr_arr[i].parentNode.removeChild(tr_arr[i]);
-	}
-	for (var i = 0; i < tr_arr.length; i++) {
-		tr_arr[i].parentNode.removeChild(tr_arr[i]);
-	}
+	
 }
 
 function change(id,table){
@@ -195,11 +190,11 @@ function change(id,table){
 	    case "year_select":
 		    bind_calendar(yselect.value,mselect.value,table);	           
 	        break;
-	    default:
-	    	//bind_calendar(2018,5);	  
+	    default:  
 	        break;
 	}
 }
+//BIND DATA FOR CALENDAR
 function bind_calendar(year,month,table){
 	var d=new Date(month+ " 1, "+year);
 	var dmax=new Date(year, month, 0);
@@ -236,7 +231,8 @@ function bind_calendar(year,month,table){
 				day_display++;
 				if(day_display<=space_day || day_display>(day_max+space_day)){
 					var td=document.createElement("td");
-					td.innerHTML="&nbsp";
+					td.innerHTML="0";
+					td.classList.add("td_none");
 					tr.appendChild(td);
 				}else{
 					var td=document.createElement("td");
