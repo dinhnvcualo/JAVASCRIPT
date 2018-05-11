@@ -196,11 +196,12 @@ function change(id,table){
 }
 //BIND DATA FOR CALENDAR
 function bind_calendar(year,month,table){
-	var d=new Date(month+ " 1, "+year);
+	var d=new Date(year, month-1, 1);
 	var dmax=new Date(year, month, 0);
 	var day_max=dmax.getDate();
 	var space_day=0;
-	switch(d.getDay()){
+	console.log(d.getDay());
+	switch(parseInt(d.getDay())){
 		case 1:
 			space_day=1;
 			break;
@@ -221,30 +222,35 @@ function bind_calendar(year,month,table){
 			break;
 		default:
 			break;
+			
 	}
+
 	/*----------  Begin bind day  ----------*/
 	var day_display=0;
 	for (var i = 1; i <= ((day_max+space_day)/7)+1; i++) {
 		var tr=document.createElement("tr");
 			tr.classList.add("tr_clear");
 			for (var j = 1; j <=7; j++) {
-				day_display++;
-				if(day_display<=space_day || day_display>(day_max+space_day)){
-					var td=document.createElement("td");
-					td.innerHTML="0";
-					td.classList.add("td_none");
-					tr.appendChild(td);
-				}else{
-					var td=document.createElement("td");
-					td.innerHTML=day_display-space_day;
-					if((day_display-space_day)==dd && mm==month && yyyy==year){
-						td.classList.add("td_current");
+					day_display++;
+					if(day_display<=space_day || day_display>(day_max+space_day)){
+						var td=document.createElement("td");
+						td.innerHTML="0";
+						td.classList.add("td_none");
+						tr.appendChild(td);
+						//alert("vao day0");
+						
 					}
-					tr.appendChild(td);
-					td.onclick=function(){
-						settext(this.innerHTML);
-					}
-					
+					else{
+						var td=document.createElement("td");
+						td.innerHTML=day_display-space_day;
+						if((day_display-space_day)==dd && mm==month && yyyy==year){
+							td.classList.add("td_current");
+						}
+						//alert("vào đây 1");
+						tr.appendChild(td);
+						td.onclick=function(){
+							settext(this.innerHTML);
+					}	
 				}	
 			}
 		table.appendChild(tr);
