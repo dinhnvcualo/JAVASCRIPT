@@ -36,8 +36,8 @@ function show(){
 	isclick=true;
 }
 /**
-* Create calendar 
-* @param {year}
+* Create default calendar 
+* @param {year is now year}
 * @param {month in year}
 * @param {day in month}
 * @return table Calendar
@@ -141,11 +141,11 @@ function getdatadisplay(year,month,day){
 	
 	return table;
 }
-
+/**
+* Remo all old data 
+*/
 function remoolddata(){
 	var tr_arr=document.getElementsByClassName("tr_clear");
-	var table=document.getElementById("table1");
-	
 	for (var i = 0; i < tr_arr.length; i++) {
 		while (tr_arr[i].firstChild) {
 		    tr_arr[i].removeChild(tr_arr[i].firstChild);
@@ -153,7 +153,11 @@ function remoolddata(){
 	}
 	
 }
-
+/**
+* Change data for selection year and month
+* @param {id of event}
+* @param {table data}
+*/
 function change(id,table){
 	//GET ELEMENT ALL
 	var yselect=document.getElementById("year_select");
@@ -194,13 +198,18 @@ function change(id,table){
 	        break;
 	}
 }
-//BIND DATA FOR CALENDAR
+/**
+* Insert data for calendar
+* @param {year of selected}
+* @param {month in year}
+* @param {day in month}
+* @return table Calendar
+*/
 function bind_calendar(year,month,table){
 	var d=new Date(year, month-1, 1);
 	var dmax=new Date(year, month, 0);
 	var day_max=dmax.getDate();
 	var space_day=0;
-	console.log(d.getDay());
 	switch(parseInt(d.getDay())){
 		case 1:
 			space_day=1;
@@ -259,6 +268,10 @@ function bind_calendar(year,month,table){
 	
 	return table;
 }
+/**
+* Set data for textbox date
+* @param {day is value of selected}
+*/
 function settext(day){
 	var textdate=document.getElementById("date");
 	var divcalendar=document.getElementById("box_calendar");
