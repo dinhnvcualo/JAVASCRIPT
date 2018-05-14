@@ -79,4 +79,5 @@ table td{
 }
 .td_none{
 	color: #2c2c2c;
+	border:solid 1px aliceblue;
 }

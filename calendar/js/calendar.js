@@ -246,8 +246,6 @@ function bind_calendar(year,month,table){
 						td.innerHTML="0";
 						td.classList.add("td_none");
 						tr.appendChild(td);
-						//alert("vao day0");
-						
 					}
 					else{
 						var td=document.createElement("td");
@@ -255,7 +253,6 @@ function bind_calendar(year,month,table){
 						if((day_display-space_day)==dd && mm==month && yyyy==year){
 							td.classList.add("td_current");
 						}
-						//alert("vào đây 1");
 						tr.appendChild(td);
 						td.onclick=function(){
 							settext(this.innerHTML);
